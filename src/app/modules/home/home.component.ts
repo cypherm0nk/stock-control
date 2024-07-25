@@ -1,3 +1,4 @@
+import { MessageService } from 'primeng/api';
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
@@ -25,7 +26,8 @@ export class HomeComponent {
   constructor(
     private formBuilder: FormBuilder,
     private userService: UserService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private messageService: MessageService
   ) {}
   onSubmitLoginForm(): void {
     if (this.loginForm.value && this.loginForm.valid) {
@@ -34,9 +36,23 @@ export class HomeComponent {
           if (response) {
             this.cookieService.set('USER_INFO', response?.token);
             this.loginForm.reset();
+            this.messageService.add({
+              severity: 'success',
+              summary: 'Success',
+              detail: `Bem vindo de volta${response?.name}`,
+              life: 2000,
+            });
           }
         },
-        error:(err)=>console.log(err)
+        error: (err) => {
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: `Erro ao fazer login!`,
+            life: 2000,
+          });
+          console.log(err);
+        },
       });
     }
   }
@@ -47,12 +63,25 @@ export class HomeComponent {
         .subscribe({
           next: (response) => {
             if (response) {
-              alert('Usuário teste criado com sucesso!');
               this.signUpform.reset();
               this.loginCard = true;
+              this.messageService.add({
+                severity: 'success',
+                summary: 'Sucesso',
+                detail: `Usuario criado com sucesso!`,
+                life: 2000,
+              });
             }
           },
-          error: (err) => console.log(err),
+          error: (err) => {
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: `Erro ao fazer login!`,
+              life: 2000,
+            });
+            console.log(err);
+          },
         });
     }
   }
