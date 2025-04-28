@@ -4,7 +4,7 @@
       class="flex justify-content-center align-content-center text-align-center"
     >
       <!--LOGIN -->
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmitLoginForm()">
         <p-card
           styleClass="mt-10"
           header="Login"
@@ -14,12 +14,12 @@
           <div
             class="flex justify-content-center align-content-center text-align-center"
           >
-            <input type="email" pInputText placeholder="Email" />
+            <input type="email" pInputText placeholder="Email" formControlName="email"/>
           </div>
           <div
             class="flex justify-content-center align-content-center text-align-center mt-3"
           >
-            <input type="password" pInputText placeholder="password" />
+            <input type="password" pInputText placeholder="password" formControlName="password" />
           </div>
           <div
             class="flex justify-content-center align-content-center text-align-center mt-3"
@@ -35,7 +35,7 @@
         </p-card>
       </form>
       <!-- SIGNUP -->
-      <form>
+      <form [formGroup]="signUpForm" (ngSubmit)="onSubmitLoginSignUpFormForm()">
         <p-card
           styleClass="mt-10"
           header="Sign Up"
@@ -45,22 +45,22 @@
           <div
             class="flex justify-content-center align-content-center text-align-center"
           >
-            <input type="text" pInputText placeholder="Name" />
+            <input type="text" pInputText placeholder="Name" formControlName="name" />
           </div>
           <div
             class="flex justify-content-center align-content-center text-align-center mt-3"
           >
-            <input type="email" pInputText placeholder="Email" />
+            <input type="email" pInputText placeholder="Email" formControlName="email"/>
           </div>
           <div
             class="flex justify-content-center align-content-center text-align-center mt-3"
           >
-            <input type="password" pInputText placeholder="password" />
+            <input type="password" pInputText placeholder="password" formControlName="password"/>
           </div>
           <div
             class="flex justify-content-center align-content-center text-align-center mt-3"
           >
-            <button type="submit" pButton pRipple label="Sign Up"></button>
+            <button type="submit" pButton pRipple label="Sign Up" [disabled]="!this.signUpForm.value"></button>
           </div>
           <span
             class="flex justify-content-center align-content-center text-align-center mt-3 text-red-600 font-semibold"
