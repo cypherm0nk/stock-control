@@ -36,7 +36,7 @@
         </p-card>
       </form>
       <!-- SIGNUP -->
-      <form [formGroup]="signUpForm" (ngSubmit)="onSubmitLoginSignUpFormForm()">
+      <form [formGroup]="signupForm" (ngSubmit)="onSubmitLoginSignupForm()">
         <p-card
           styleClass="mt-10"
           header="Sign Up"
@@ -61,7 +61,7 @@
           <div
             class="flex justify-content-center align-content-center text-align-center mt-3"
           >
-            <button type="submit" pButton pRipple label="Sign Up" [disabled]="!this.signUpForm.value"></button>
+            <button type="submit" pButton pRipple label="Sign Up" [disabled]="!this.signupForm.value"></button>
           </div>
           <span
             class="flex justify-content-center align-content-center text-align-center mt-3 text-red-600 font-semibold"
